@@ -1,5 +1,5 @@
 <template>
-  <div class="msg-box" ref="msgBox" v-dragable="dragable">
+  <div class="msg-box" ref="msgBox">
     <div class="msg-box-wrap">
       <h1>{{title}}</h1>
       <em class="close-tip" @click="clickType">×</em>
