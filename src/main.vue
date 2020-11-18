@@ -2,13 +2,12 @@
   <transition name="msgbox-fade">
     <div class="message-chend" v-show="visible">
       <div class="message-chend-bg"></div>
-      <msg-box :title="title" :dragable="dragable" class="message-chend-content" @clickType="rightBtnFn">
+      <msg-box :title="title" :dragable="dragable" class="message-chend-content" @clickType="leftBtnFn">
         <div class="noticeMessageWrap">
-          <p :class="{'noBtn': !btnShow, 'p-tip':tip , 'p-content': !tip}">{{content}}</p>
-          <p v-if="tip" class="msgbox-tip p-tip">{{tip}}</p>
+          <p class="p-content">{{content}}</p>
           <div class="notice0-btn" v-if="btnShow">
-            <el-button class="notice0-left" :class="{'onlyOneBtn': !cancelBtn}" @click="leftBtnFn" round>{{leftText}}</el-button>
-            <el-button class="notice0-right" v-show="cancelBtn" @click="rightBtnFn" round>{{rightText}}</el-button>
+            <el-button class="notice0-left" :class="{'onlyOneBtn': !ensureBtn}" @click="leftBtnFn" round>{{leftText}}</el-button>
+            <el-button class="notice0-right" v-show="ensureBtn" @click="rightBtnFn" round>{{rightText}}</el-button>
           </div>
         </div>
       </msg-box>
@@ -23,9 +22,9 @@ export default {
       title: '提示',
       content: '内容',
       tip: '',
-      leftText: '确定',
-      rightText: '取消',
-      cancelBtn: true,
+      leftText: '取消',
+      rightText: '确定',
+      ensureBtn: true,
       dragable: true,
       visible: false,
       callBackValue: '1',
@@ -37,21 +36,21 @@ export default {
   components: {msgBox},
   methods: {
     init () {
-      this.cancelBtn = true
+      this.ensureBtn = true
     },
     doClose () {
       this.visible = false
     },
     leftBtnFn () {
       this.action = {
-        value: 'confirm'
+        value: 'cancel'
       }
       this.callback(this.action, this)
       this.doClose()
     },
     rightBtnFn () {
       this.action = {
-        value: 'cancel'
+        value: 'confirm'
       }
       this.callback(this.action, this)
       this.doClose()
@@ -66,7 +65,7 @@ export default {
   }
 }
 </script>
-<style lang="less" ref="stylesheet/less" scoped="scoped">
+<style ref="stylesheet/scss" lang="scss" scoped="scoped">
   .message-chend {
     position: fixed;
     top: 0;
@@ -87,59 +86,47 @@ export default {
       position: absolute;
       top: 30%;
       left: 50%;
-      margin-left: -150px;
+      margin-left: -340px;
       z-index: 99998;
       .noticeMessageWrap {
-        max-width: 350px;
-        min-width: 250px;
-        margin-top: 10px;
-        border-top: 1px solid #0d6bac;
-        .noBtn {
-          padding-bottom: 15px;
-        }
+        padding-right: 25px;
         .p-content {
-          padding: 15px 50px 0 50px;
-          font-size: 16px;
-          color: #62dcff;
-          line-height: 25px;
-        }
-        .p-tip{
-          padding: 15px 20px 0 20px;
-          font-size: 16px;
           text-align: left;
-          color: #62dcff;
-          line-height: 25px;
-        }
-        .msgbox-tip{
-          color: #eff2f3ad;
+          margin-left: 25px;
+          padding-bottom: 40px;
+          margin-bottom: 0;
           font-size: 14px;
-          margin: 0;
-          padding-top: 0;
+          font-weight: 400;
+          color: #fff;
         }
         .notice0-btn {
           position: relative;
-          float: left;
-          padding: 25px 35px;
-          .el-button + .el-button {
-            margin-left: 30px;
-          }
+          width: 680px;
+          height: 100px;
+          background: #fff;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           .notice0 {
-            float: left;
             &-left, &-right {
-              width: 100px;
-              height: 30px;
-              color: #59cdf2;
-              border: none;
-              padding: 0 !important;
+              width: 190px;
+              height: 42px;
+              color: #fff;
+              border-radius: 6px;
+              font-size: 14px;
+              font-weight: 400;
             }
             &-right {
-              float: right;
-              background-color: #095491;
+              background-color: #202235;
+              border: 1px solid #202235;
             }
             &-left {
-              float: left;
-              background-color: #006fc9;
-              color: #fff;
+              background-color: #fff;
+              color: #A3A3A3;
+              border: 1px solid #E9E8E8;
+              margin-right: 20px;
             }
           }
           .onlyOneBtn {

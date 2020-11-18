@@ -4,7 +4,6 @@
       <h1>{{title}}</h1>
       <em class="close-tip" @click="clickType">×</em>
       <slot></slot>
-      <div class="spanLine"></div>
     </div>
   </div>
 </template>
@@ -46,33 +45,33 @@
     }
   }
 </script>
-<style ref="stylesheet/less" lang="less">
+<style ref="stylesheet/scss" lang="scss">
   .msg-box {
     position: fixed;
     z-index: 2000;
     .msg-box-wrap {
-      opacity: .95;
       float: left;
       position: relative;
-      width: 100%;
-      height: 100%;
-      background-color: #0c4371;
-      border: 1px solid #5db1ff;
+      width: 680px;
+      background-color: #202235;
+      border-radius: 10px;
       h1 {
         color: #fff;
-        font-size: 16px;
-        padding-top: 10px;
+        font-size: 20px;
+        font-weight: 400;
         text-align: left;
-        padding-left: 18px;
+        margin-left: 25px;
+        line-height: 20px;
+        margin-top: 25px;
+        margin-bottom: 40px;
       }
-
       .close-tip {
         font-style: normal;
         color: #fff;
         font-size: 28px;
         position: absolute;
-        right: 10px;
-        top: 0px;
+        right: 25px;
+        top: 20px;
         cursor: pointer;
       }
     }
