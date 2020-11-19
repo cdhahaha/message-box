@@ -1,7 +1,7 @@
 <template>
   <transition name="msgbox-fade">
     <div class="message-chend" v-show="visible">
-      <div class="message-chend-bg"></div>
+      <div class="message-chend-bg" @click="leftBtnFn"></div>
       <msg-box :title="title" :dragable="dragable" class="message-chend-content" @clickType="leftBtnFn">
         <div class="noticeMessageWrap">
           <p class="p-content">{{content}}</p>
